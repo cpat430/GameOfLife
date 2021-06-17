@@ -108,7 +108,7 @@ public class GameOfLife {
             int i = (int)(Math.random() * n);
             int j = (int)(Math.random() * m);
 
-            gameBoard[i][j] = 1;
+            gameBoard[i][j] = Constants.ALIVE;
         }
     }
 
