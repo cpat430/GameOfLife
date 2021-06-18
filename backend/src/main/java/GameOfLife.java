@@ -8,23 +8,25 @@ public class GameOfLife {
 //            {0, 0, 0, 0, 0}};
     private int[][] gameBoard;
     private int n, m, initialBacteria; // TODO: change the chance to a percentage for the bacteria.
+    private int iterations;
 
     public GameOfLife() {
 
     }
 
-    public GameOfLife(int n, int m, int initialBacteria) {
+    public GameOfLife(int n, int m, int initialBacteria, int iterations) {
         this.n = n;
         this.m = m;
         this.initialBacteria = initialBacteria;
         gameBoard = new int[n][m];
+        this.iterations = iterations;
     }
 
     public void run() {
         populateBoard(initialBacteria);
         printBoard(gameBoard);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < iterations; i++) {
             int[][] nextState = calculateNextState(gameBoard);
             gameBoard = nextState;
             printBoard(gameBoard);
