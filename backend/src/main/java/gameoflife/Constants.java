@@ -1,3 +1,5 @@
+package gameoflife;
+
 public class Constants {
 
     public static int ALIVE = 1;

@@ -1,3 +1,5 @@
+package gameoflife;
+
 public class PopulationRule {
 
     public static int toPopulateTo(int currentState, int numNearbyBacteria) {

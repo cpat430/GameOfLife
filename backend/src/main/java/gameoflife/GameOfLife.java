@@ -1,3 +1,5 @@
+package gameoflife;
+
 public class GameOfLife {
 
 //    private int[][] gameBoard =
