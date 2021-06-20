@@ -39,6 +39,10 @@ export const Grid = (props: GridProps) => {
     setGrid(initGrid({ rows, cols }));
   }, []);
 
+  useEffect(() => {
+    setGrid(initGrid({ rows, cols }));
+  }, [rows, cols]);
+
   return (
     <>
       <div>

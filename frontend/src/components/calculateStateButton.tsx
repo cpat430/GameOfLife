@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useContext } from "react";
+import { GAME_OF_LIFE_URI } from "../constants";
 import { GridContext } from "../providers/GridContext";
 
 export const CalculateStateButton = () => {
@@ -7,10 +8,7 @@ export const CalculateStateButton = () => {
   // const getNextState = []; // get using axios or something.
 
   const getNextState = async () => {
-    const response = await axios.post(
-      "http://localhost:8080/game-of-life",
-      grid
-    );
+    const response = await axios.post(GAME_OF_LIFE_URI, grid);
     const { data } = response;
     setGrid(data);
   };
