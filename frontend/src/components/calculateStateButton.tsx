@@ -5,7 +5,6 @@ import { GridContext } from "../providers/GridContext";
 
 export const CalculateStateButton = () => {
   const { grid, setGrid } = useContext(GridContext);
-  // const getNextState = []; // get using axios or something.
 
   const getNextState = async () => {
     const response = await axios.post(GAME_OF_LIFE_URI, grid);

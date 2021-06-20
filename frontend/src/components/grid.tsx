@@ -10,11 +10,6 @@ type GridProps = {
   gridHeight?: number;
 };
 
-type Coord = {
-  i: number;
-  j: number;
-};
-
 const useStyles = makeStyles(() => ({
   row: {
     display: "flex",

@@ -58,8 +58,6 @@ export const Cell = ({
     <div
       className={`${classes.cell} ${toggled ? classes.on : classes.off}`}
       onClick={() => handleClick()}
-    >
-      {/* {cellValue} */}
-    </div>
+    ></div>
   );
 };
