@@ -12,8 +12,6 @@ export const CalculateStateButton = () => {
       grid
     );
     const { data } = response;
-
-    // console.log(data);
     setGrid(data);
   };
 

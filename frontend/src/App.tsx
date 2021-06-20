@@ -5,6 +5,11 @@ import { Grid } from "./components/grid";
 import { CalculateStateButton } from "./components/calculateStateButton";
 
 function App() {
+  const gridWidth = window.innerWidth * 0.7;
+  const gridHeight = window.innerHeight * 0.7;
+  const rows = 30;
+  const cols = 30; // will make the grid a max nxn
+
   return (
     <div className="App">
       <div
@@ -12,9 +17,15 @@ function App() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          marginTop: "10%",
         }}
       >
-        <Grid rows={6} cols={6} gridHeight={100} gridWidth={100} />
+        <Grid
+          rows={rows}
+          cols={cols}
+          gridHeight={gridHeight / rows}
+          gridWidth={gridWidth / cols}
+        />
       </div>
       <div
         style={{
