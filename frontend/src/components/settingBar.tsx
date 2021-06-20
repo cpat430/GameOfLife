@@ -48,7 +48,7 @@ export const SettingsBar = ({
         onChange={handlePercentageChange}
       ></input>
       <button onClick={() => randomiseBoard(grid, setGrid, bacteriaPercentage)}>
-        randomise
+        Randomise the bacteria!
       </button>
     </div>
   );
