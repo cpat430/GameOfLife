@@ -6,6 +6,7 @@ import { CalculateStateButton } from "./components/calculateStateButton";
 import { DEFAULT_GRID_SIZE } from "./constants";
 import { Typography } from "@material-ui/core";
 import { SettingsBar } from "./components/settingBar";
+import { GridContext } from "./providers/GridContext";
 
 function App() {
   const gridWidth = window.innerWidth * 0.7;
