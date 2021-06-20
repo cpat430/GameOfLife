@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Cell } from "./cell";
 import { makeStyles } from "@material-ui/core";
+import { GridContext } from "../providers/GridContext";
 
 type GridProps = {
   rows: number;
   cols: number;
   gridWidth?: number;
   gridHeight?: number;
+};
+
+type Coord = {
+  i: number;
+  j: number;
 };
 
 // export const Grid = (props: GridProps) => {
@@ -22,12 +28,16 @@ const useStyles = makeStyles(() => ({
 export const Grid = (props: GridProps) => {
   const { rows, cols, gridWidth, gridHeight } = props;
 
-  const [grid, setGrid] = useState(initGrid({ rows, cols }));
+  const { grid, setGrid } = useContext(GridContext);
 
   const classes = useStyles();
 
   const cellHeight = gridHeight || 0 / rows;
   const cellWidth = gridWidth || 0 / cols;
+
+  useEffect(() => {
+    setGrid(initGrid({ rows, cols }));
+  }, []);
 
   return (
     <>
@@ -42,6 +52,8 @@ export const Grid = (props: GridProps) => {
                     initialValue={ele}
                     cellHeight={cellHeight}
                     cellWidth={cellWidth}
+                    i={idx}
+                    j={jdx}
                   ></Cell>
                 );
               })}
