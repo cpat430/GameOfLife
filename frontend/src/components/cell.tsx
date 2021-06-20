@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import React, { CSSProperties, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GridContext } from "../providers/GridContext";
 
 const useStyles = makeStyles(() => ({

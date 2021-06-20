@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Cell } from "./cell";
 import { makeStyles } from "@material-ui/core";
 import { GridContext } from "../providers/GridContext";
@@ -14,10 +14,6 @@ type Coord = {
   i: number;
   j: number;
 };
-
-// export const Grid = (props: GridProps) => {
-//     const { rows, cols } = props;
-// }
 
 const useStyles = makeStyles(() => ({
   row: {
