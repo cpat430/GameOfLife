@@ -18,7 +18,7 @@ export const RandomiseBacteria = ({
 
   return (
     <div>
-      <label>Bacteria Percentage</label>
+      <label>Bacteria Percentage: </label>
       <input
         type="range"
         value={bacteriaPercentage}

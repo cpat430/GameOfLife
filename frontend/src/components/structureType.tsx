@@ -14,7 +14,7 @@ export const StructureType = () => {
   return (
     <div>
       <form onChange={handleChange}>
-        <label>Structure Types</label>
+        <label>Structure Types: </label>
         <select>
           {TYPES.map((type) => {
             return <option value={type}>{type}</option>;
