@@ -41,18 +41,14 @@ export const Cell = ({
   const { updateGrid } = useContext(GridContext);
 
   const handleClick = () => {
-    setToggled(!toggled);
-    setCellValue(cellValue === 1 ? 0 : 1);
+    const value = cellValue === 1 ? 0 : 1;
+    updateGrid({ i, j, value });
   };
 
   useEffect(() => {
     setCellValue(initialValue);
     setToggled(initialValue === 1 ? true : false);
   }, [initialValue]);
-
-  useEffect(() => {
-    updateGrid({ i, j, value: cellValue });
-  }, [cellValue]);
 
   return (
     <div

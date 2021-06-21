@@ -4,12 +4,15 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { GridContextProvider } from "./providers/GridContext";
+import { StructureContextProvider } from "./providers/StructureContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <GridContextProvider>
-      <App />
-    </GridContextProvider>
+    <StructureContextProvider>
+      <GridContextProvider>
+        <App />
+      </GridContextProvider>
+    </StructureContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -49,7 +49,7 @@ export const Grid = (props: GridProps) => {
                     cellWidth={cellWidth}
                     i={idx}
                     j={jdx}
-                  ></Cell>
+                  />
                 );
               })}
             </div>

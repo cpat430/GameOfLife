@@ -1,4 +1,8 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useContext } from "react";
+import { STRUCTURE_URI } from "../constants";
+import { StructureContext } from "./StructureContext";
 
 type GridContextType = {
   grid: number[][];
@@ -32,7 +36,9 @@ const GridContext = React.createContext<GridContextType>(initialState);
 const GridContextProvider: React.FC = ({ children }) => {
   const [grid, setGrid] = useState<number[][]>([]);
 
-  const updateGrid = ({
+  const { structure } = useContext(StructureContext);
+
+  const updateGrid = async ({
     i,
     j,
     value,
@@ -42,7 +48,33 @@ const GridContextProvider: React.FC = ({ children }) => {
     value: number;
   }) => {
     const newGrid = [...grid];
-    newGrid[i][j] = value;
+    const n = newGrid.length;
+    const m = newGrid[0].length;
+
+    if (structure == "none") {
+      newGrid[i][j] = value;
+    } else {
+      // get the structure from the server
+      const response = await axios.get(STRUCTURE_URI, {
+        params: {
+          structureName: structure,
+        },
+      });
+
+      const { data: structureArray } = response;
+
+      // iterate through the data and update the grid
+      for (let ii = 0; ii < structureArray.length; ii++) {
+        for (let jj = 0; jj < structureArray[0].length; jj++) {
+          if (ob(i + ii, n) || ob(j + jj, m)) {
+            break;
+          }
+
+          newGrid[i + ii][j + jj] = structureArray[ii][jj];
+        }
+      }
+    }
+
     setGrid(newGrid);
   };
 
@@ -57,6 +89,14 @@ const GridContextProvider: React.FC = ({ children }) => {
   return (
     <GridContext.Provider value={context}>{children}</GridContext.Provider>
   );
+};
+
+const ob = (i: number, n: number) => {
+  if (i < 0 || i >= n) {
+    return true;
+  }
+
+  return false;
 };
 
 export { GridContext, GridContextProvider };

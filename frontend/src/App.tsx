@@ -9,14 +9,8 @@ import { SettingsBar } from "./components/settingBar";
 function App() {
   const gridWidth = window.innerWidth * 0.7;
   const gridHeight = window.innerHeight * 0.7;
-  // const rows = DEFAULT_GRID_SIZE;
-  // const cols = DEFAULT_GRID_SIZE; // will make the grid a max nxn
 
   const [gridSize, setGridSize] = useState<number>(DEFAULT_GRID_SIZE);
-
-  useEffect(() => {
-    console.log("useeffect", gridSize); //todo: update the number of rows and columns.
-  }, [gridSize]);
 
   return (
     <div className="App">

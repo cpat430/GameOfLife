@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { GridSize } from "./gridSize";
 import { RandomiseBacteria } from "./randomiseBacteria";
+import { StructureType } from "./structureType";
 
 export const SettingsBar = ({
   setGridSize,
@@ -14,15 +15,17 @@ export const SettingsBar = ({
       style={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
         width: "80%",
       }}
     >
-      <GridSize setGridSize={setGridSize}></GridSize>
+      <GridSize setGridSize={setGridSize} />
       <RandomiseBacteria
         bacteriaPercentage={bacteriaPercentage}
         setBacteriaPercentage={setBacteriaPercentage}
-      ></RandomiseBacteria>
+      />
+      <StructureType />
     </div>
   );
 };
