@@ -11,11 +11,14 @@ const useStyles = makeStyles(() => ({
     height: props.cellHeight,
     width: props.cellWidth,
   }),
-  on: {
+  normal: {
     backgroundColor: "grey",
   },
-  off: {
+  dead: {
     backgroundColor: "white",
+  },
+  mutant: {
+    backgroundColor: "#FF5147",
   },
 }));
 
@@ -33,26 +36,28 @@ export const Cell = ({
   j: number;
 }) => {
   const classes = useStyles({ cellHeight, cellWidth });
-  const [toggled, setToggled] = useState<boolean>(
-    initialValue === 1 ? true : false
-  );
   const [cellValue, setCellValue] = useState<number>(initialValue);
 
   const { updateGrid } = useContext(GridContext);
 
   const handleClick = () => {
-    const value = cellValue === 1 ? 0 : 1;
+    const value = (cellValue + 1) % 3;
     updateGrid({ i, j, value });
   };
 
   useEffect(() => {
     setCellValue(initialValue);
-    setToggled(initialValue === 1 ? true : false);
   }, [initialValue]);
 
   return (
     <div
-      className={`${classes.cell} ${toggled ? classes.on : classes.off}`}
+      className={`${classes.cell} ${
+        cellValue === 0
+          ? classes.dead
+          : cellValue === 1
+          ? classes.normal
+          : classes.mutant
+      }`}
       onClick={() => handleClick()}
     ></div>
   );
