@@ -45,10 +45,10 @@ public class GameOfLife {
             for (int j = 0; j < m; j++) {
 
                 // for each spot, count neighbours
-                int numOfNeighbours = countNeighbours(gameBoard, i,j);
+                Neighbour numOfNeighbours = countNeighbours(gameBoard, i,j);
 
                 // check if we need to change the type
-                int populateTo = PopulationRule.toPopulateTo(gameBoard[i][j], numOfNeighbours);
+                int populateTo = PopulationRule.toPopulateTo(gameBoard[i][j], numOfNeighbours.normalNeighbours, numOfNeighbours.mutantNeighbours);
 
                 nextBoard[i][j] = populateTo;
             }
@@ -66,10 +66,11 @@ public class GameOfLife {
         return false;
     }
 
-    private int countNeighbours(int[][] gameBoard, int i, int j) {
+    private Neighbour countNeighbours(int[][] gameBoard, int i, int j) {
 
         int n = gameBoard.length, m = gameBoard[0].length;
-        int neighbours = 0;
+        int normalNeighbours = 0;
+        int mutantNeighbours = 0;
 
         for (int ii = i-1; ii <= i+1; ii++) {
             for (int jj = j-1; jj <= j+1; jj++) {
@@ -82,12 +83,14 @@ public class GameOfLife {
                 }
 
                 if (gameBoard[ii][jj] == Constants.ALIVE) {
-                    neighbours++;
+                    normalNeighbours++;
+                } else if (gameBoard[ii][jj] == Constants.MUTANT) {
+                    mutantNeighbours++;
                 }
             }
         }
 
-        return neighbours;
+        return new Neighbour(normalNeighbours, mutantNeighbours);
     }
 
     /**
@@ -121,5 +124,24 @@ public class GameOfLife {
         this.m = m;
         this.initialBacteria = initialBacteria;
         this.gameBoard = new int[n][m];
+    }
+
+    private class Neighbour {
+
+        private int normalNeighbours;
+        private int mutantNeighbours;
+
+        private Neighbour(int normalNeighbours, int mutantNeighbours) {
+            this.normalNeighbours = normalNeighbours;
+            this.mutantNeighbours = mutantNeighbours;
+        }
+
+        public int getNormalNeighbours() {
+            return normalNeighbours;
+        }
+
+        public int getMutantNeighbours() {
+            return mutantNeighbours;
+        }
     }
 }
