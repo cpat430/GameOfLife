@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { ALIVE, DEAD, NUM_TYPES } from "../constants";
 import { GridContext } from "../providers/GridContext";
 
+// icons from https://icons8.com/icons/set/bacteria
+
 const useStyles = makeStyles(() => ({
   cell: (props: { cellHeight: number; cellWidth: number }) => ({
     display: "flex",
@@ -13,13 +15,14 @@ const useStyles = makeStyles(() => ({
     width: props.cellWidth,
   }),
   normal: {
-    backgroundColor: "grey",
+    // backgroundColor: "grey",
+    content: `url(bacteria.png)`,
   },
   dead: {
     backgroundColor: "white",
   },
   mutant: {
-    backgroundColor: "#FF5147",
+    content: `url(mutantbacteria.png)`,
   },
 }));
 

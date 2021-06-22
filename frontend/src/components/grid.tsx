@@ -6,8 +6,7 @@ import { GridContext } from "../providers/GridContext";
 type GridProps = {
   rows: number;
   cols: number;
-  gridWidth?: number;
-  gridHeight?: number;
+  gridDimensions?: number;
 };
 
 const useStyles = makeStyles(() => ({
@@ -17,14 +16,14 @@ const useStyles = makeStyles(() => ({
 }));
 
 export const Grid = (props: GridProps) => {
-  const { rows, cols, gridWidth, gridHeight } = props;
+  const { rows, cols, gridDimensions } = props;
 
   const { grid, setGrid } = useContext(GridContext);
 
   const classes = useStyles();
 
-  const cellHeight = gridHeight || 0 / rows;
-  const cellWidth = gridWidth || 0 / cols;
+  const cellHeight = gridDimensions || 0 / rows;
+  const cellWidth = gridDimensions || 0 / cols;
 
   useEffect(() => {
     setGrid(initGrid({ rows, cols }));
@@ -36,7 +35,7 @@ export const Grid = (props: GridProps) => {
 
   return (
     <>
-      <div>
+      <div id="grid">
         {grid.map((row, idx) => {
           return (
             <div className={classes.row}>

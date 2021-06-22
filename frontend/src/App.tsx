@@ -1,14 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Grid } from "./components/grid";
 import { CalculateStateButton } from "./components/calculateStateButton";
 import { DEFAULT_GRID_SIZE } from "./constants";
-import { Typography } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
 import { SettingsBar } from "./components/settingBar";
 
+const useStyles = makeStyles(() => ({
+  center: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+}));
+
 function App() {
-  const gridWidth = window.innerWidth * 0.7;
   const gridHeight = window.innerHeight * 0.7;
+
+  const classes = useStyles();
 
   const [gridSize, setGridSize] = useState<number>(DEFAULT_GRID_SIZE);
 
@@ -18,39 +27,32 @@ function App() {
         <Typography variant="h2">Conway's Game of Life</Typography>
       </div>
       <div
+        className={classes.center}
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
           marginTop: "1%",
         }}
       >
         <Grid
           rows={gridSize}
           cols={gridSize}
-          gridHeight={gridHeight / gridSize}
-          gridWidth={gridWidth / gridSize}
+          gridDimensions={gridHeight / gridSize}
         />
       </div>
       <div
+        className={classes.center}
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
           marginTop: "1%",
         }}
       >
         <SettingsBar setGridSize={setGridSize} />
       </div>
       <div
+        className={classes.center}
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
           marginTop: "3%",
         }}
       >
-        <CalculateStateButton />{" "}
+        <CalculateStateButton />
         {/* add something that will get a specified state from the api*/}
       </div>
     </div>
