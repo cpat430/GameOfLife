@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import javax.websocket.server.PathParam;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
@@ -20,9 +21,9 @@ public class GameOfLifeController {
     }
 
     @PostMapping("/game-of-life")
-    public int[][] nextBoard(@RequestBody int[][] currentBoard) {
+    public int[][] nextBoard(@RequestBody int[][] currentBoard, @PathParam("isMutant") boolean isMutant) {
         GameOfLife gameOfLife = new GameOfLife();
-        int[][] nextBoardState = gameOfLife.calculateNextState(currentBoard);
+        int[][] nextBoardState = gameOfLife.calculateNextState(currentBoard, isMutant);
 
         return nextBoardState;
     }

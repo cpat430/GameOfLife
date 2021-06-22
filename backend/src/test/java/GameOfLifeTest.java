@@ -26,7 +26,7 @@ public class GameOfLifeTest {
 
         int[][] emptyGameBoard = new int[5][5];
 
-        int[][] result = gameOfLife.calculateNextState(emptyGameBoard);
+        int[][] result = gameOfLife.calculateNextState(emptyGameBoard, false);
 
         compareBoard(emptyGameBoard, result);
     }
@@ -41,7 +41,7 @@ public class GameOfLifeTest {
                 {0,0,0,1}
         };
 
-        int[][] result = gameOfLife.calculateNextState(gameBoard);
+        int[][] result = gameOfLife.calculateNextState(gameBoard, false);
 
         int[][] expected = new int[4][4];
 
@@ -57,7 +57,7 @@ public class GameOfLifeTest {
                 {0,0,0,1}
         };
 
-        int[][] result = gameOfLife.calculateNextState(gameBoard);
+        int[][] result = gameOfLife.calculateNextState(gameBoard, false);
 
         int[][] expected = new int[4][4];
 
@@ -73,7 +73,7 @@ public class GameOfLifeTest {
                 {0,0,0,0}
         };
 
-        int[][] result = gameOfLife.calculateNextState(gameBoard);
+        int[][] result = gameOfLife.calculateNextState(gameBoard, false);
 
         int[][] expected = {
                 {1,1,0,0},
@@ -94,7 +94,7 @@ public class GameOfLifeTest {
                 {0,0,0,0}
         };
 
-        int[][] result = gameOfLife.calculateNextState(gameBoard);
+        int[][] result = gameOfLife.calculateNextState(gameBoard, false);
 
         int[][] expected = {
                 {1,0,1,0},

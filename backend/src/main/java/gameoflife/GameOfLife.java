@@ -29,13 +29,13 @@ public class GameOfLife {
         printBoard(gameBoard);
 
         for (int i = 0; i < iterations; i++) {
-            int[][] nextState = calculateNextState(gameBoard);
+            int[][] nextState = calculateNextState(gameBoard, false);
             gameBoard = nextState;
             printBoard(gameBoard);
         }
     }
 
-    public int[][] calculateNextState(int[][] gameBoard) {
+    public int[][] calculateNextState(int[][] gameBoard, boolean isMutant) {
 
         int n = gameBoard.length, m = gameBoard[0].length;
         int[][] nextBoard = new int[n][m];
@@ -47,8 +47,14 @@ public class GameOfLife {
                 // for each spot, count neighbours
                 Neighbour numOfNeighbours = countNeighbours(gameBoard, i,j);
 
-                // check if we need to change the type
-                int populateTo = PopulationRule.toPopulateTo(gameBoard[i][j], numOfNeighbours.normalNeighbours, numOfNeighbours.mutantNeighbours);
+                int populateTo = 0;
+
+                if (isMutant) {
+                    // check if we need to change the type
+                    populateTo = PopulationRule.toPopulateTo(gameBoard[i][j], numOfNeighbours.normalNeighbours, numOfNeighbours.mutantNeighbours);
+                } else {
+                    populateTo = PopulationRule.toPopulateTo(gameBoard[i][j], numOfNeighbours.normalNeighbours);
+                }
 
                 nextBoard[i][j] = populateTo;
             }
@@ -134,14 +140,6 @@ public class GameOfLife {
         private Neighbour(int normalNeighbours, int mutantNeighbours) {
             this.normalNeighbours = normalNeighbours;
             this.mutantNeighbours = mutantNeighbours;
-        }
-
-        public int getNormalNeighbours() {
-            return normalNeighbours;
-        }
-
-        public int getMutantNeighbours() {
-            return mutantNeighbours;
         }
     }
 }
