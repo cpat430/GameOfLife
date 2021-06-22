@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
+import { ALIVE, DEAD, NUM_TYPES } from "../constants";
 import { GridContext } from "../providers/GridContext";
 
 const useStyles = makeStyles(() => ({
@@ -41,7 +42,7 @@ export const Cell = ({
   const { updateGrid } = useContext(GridContext);
 
   const handleClick = () => {
-    const value = (cellValue + 1) % 3;
+    const value = (cellValue + 1) % NUM_TYPES;
     updateGrid({ i, j, value });
   };
 
@@ -52,9 +53,9 @@ export const Cell = ({
   return (
     <div
       className={`${classes.cell} ${
-        cellValue === 0
+        cellValue === DEAD
           ? classes.dead
-          : cellValue === 1
+          : cellValue === ALIVE
           ? classes.normal
           : classes.mutant
       }`}

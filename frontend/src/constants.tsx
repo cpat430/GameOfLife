@@ -5,6 +5,12 @@ export const MAX_GRID_SIZE = 30;
 export const GAME_OF_LIFE_URI = "http://localhost:8080/game-of-life";
 export const STRUCTURE_URI = "http://localhost:8080/structures";
 
+export const DEAD = 0;
+export const ALIVE = 1;
+export const MUTANT = 2;
+
+export const NUM_TYPES = 3;
+
 export const TYPES = [
   "none",
   "block",

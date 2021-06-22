@@ -50,7 +50,8 @@ function App() {
           marginTop: "3%",
         }}
       >
-        <CalculateStateButton />
+        <CalculateStateButton />{" "}
+        {/* add something that will get a specified state from the api*/}
       </div>
     </div>
   );

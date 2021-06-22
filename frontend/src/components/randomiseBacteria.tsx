@@ -1,5 +1,7 @@
 import { useContext } from "react";
+import { ALIVE, DEAD, MUTANT } from "../constants";
 import { GridContext } from "../providers/GridContext";
+import { MutantContext } from "../providers/MutantContext";
 
 export const RandomiseBacteria = ({
   bacteriaPercentage,
@@ -9,6 +11,7 @@ export const RandomiseBacteria = ({
   setBacteriaPercentage: (percentage: number) => void;
 }) => {
   const { grid, setGrid } = useContext(GridContext);
+  const { isMutant } = useContext(MutantContext);
 
   const handlePercentageChange = (event: any) => {
     if (!event.target.value) return;
@@ -27,7 +30,11 @@ export const RandomiseBacteria = ({
         step="0.05"
         onChange={handlePercentageChange}
       ></input>
-      <button onClick={() => randomiseBoard(grid, setGrid, bacteriaPercentage)}>
+      <button
+        onClick={() =>
+          randomiseBoard(grid, setGrid, bacteriaPercentage, isMutant)
+        }
+      >
         Randomise the bacteria!
       </button>
     </div>
@@ -37,7 +44,8 @@ export const RandomiseBacteria = ({
 const randomiseBoard = (
   board: number[][],
   setGrid: (board: number[][]) => void,
-  percentage: number
+  percentage: number,
+  isMutant: boolean
 ) => {
   // iterate through the board and create a new board to set to.
   const newBoard = [...board];
@@ -47,9 +55,14 @@ const randomiseBoard = (
       const rand = Math.random();
 
       if (rand <= percentage) {
-        newBoard[i][j] = 1;
+        if (isMutant) {
+          const randMutant = Math.random();
+          newBoard[i][j] = randMutant > 0.1 ? ALIVE : MUTANT;
+        } else {
+          newBoard[i][j] = ALIVE;
+        }
       } else {
-        newBoard[i][j] = 0;
+        newBoard[i][j] = DEAD;
       }
     }
   }

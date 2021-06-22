@@ -5,12 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { GridContextProvider } from "./providers/GridContext";
 import { StructureContextProvider } from "./providers/StructureContext";
+import { MutantContextProvider } from "./providers/MutantContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <StructureContextProvider>
       <GridContextProvider>
-        <App />
+        <MutantContextProvider>
+          <App />
+        </MutantContextProvider>
       </GridContextProvider>
     </StructureContextProvider>
   </React.StrictMode>,

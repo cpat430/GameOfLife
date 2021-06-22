@@ -5,6 +5,7 @@ export const GridSize = ({
 }) => {
   const handleChange = (event: any) => {
     if (!event.target.value) return;
+
     if (event.target.value > 30) {
       event.target.value = 30;
     }

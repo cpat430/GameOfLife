@@ -2,6 +2,7 @@ import { useState } from "react";
 import { GridSize } from "./gridSize";
 import { RandomiseBacteria } from "./randomiseBacteria";
 import { StructureType } from "./structureType";
+import { MutantToggle } from "./mutantToggle";
 
 export const SettingsBar = ({
   setGridSize,
@@ -26,6 +27,7 @@ export const SettingsBar = ({
         setBacteriaPercentage={setBacteriaPercentage}
       />
       <StructureType />
+      <MutantToggle />
     </div>
   );
 };
