@@ -32,10 +32,6 @@ public class PopulationRule {
             if (numNearbyBacteria == 3) {
                 return Constants.ALIVE;
             }
-
-            if (numNearbyBacteria == 8) {
-                return Constants.MUTANT;
-            }
         }
 
         // the only conditions to live are if there are exactly 2/3 and is alive,
