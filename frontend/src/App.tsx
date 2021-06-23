@@ -4,12 +4,12 @@ import { Grid } from "./components/grid";
 import { CalculateStateButton } from "./components/calculateStateButton";
 import { DEFAULT_GRID_SIZE } from "./constants";
 import { makeStyles, Typography } from "@material-ui/core";
-import { SettingsBar } from "./components/settingBar";
+import { SettingsBar } from "./components/settingsBar";
 
 const useStyles = makeStyles(() => ({
   center: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
   },
 }));
@@ -49,11 +49,10 @@ function App() {
       <div
         className={classes.center}
         style={{
-          marginTop: "3%",
+          marginTop: "1%",
         }}
       >
         <CalculateStateButton />
-        {/* add something that will get a specified state from the api*/}
       </div>
     </div>
   );

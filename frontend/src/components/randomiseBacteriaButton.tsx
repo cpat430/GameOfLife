@@ -2,8 +2,21 @@ import { useContext } from "react";
 import { ALIVE, DEAD, MUTANT } from "../constants";
 import { GridContext } from "../providers/GridContext";
 import { MutantContext } from "../providers/MutantContext";
+import { Button, makeStyles, Slider, Typography } from "@material-ui/core";
 
-export const RandomiseBacteria = ({
+const useStyles = makeStyles(() => ({
+  slider: {
+    width: "100%",
+  },
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexGrow: 3,
+  },
+}));
+
+export const RandomiseBacteriaButton = ({
   bacteriaPercentage,
   setBacteriaPercentage,
 }: {
@@ -13,30 +26,41 @@ export const RandomiseBacteria = ({
   const { grid, setGrid } = useContext(GridContext);
   const { isMutant } = useContext(MutantContext);
 
-  const handlePercentageChange = (event: any) => {
-    if (!event.target.value) return;
+  const classes = useStyles();
 
-    setBacteriaPercentage(event.target.value);
+  const handlePercentageChange = (event: any, newValue: number | number[]) => {
+    setBacteriaPercentage(newValue as number);
   };
 
   return (
-    <div>
-      <label>Bacteria Percentage: </label>
-      <input
-        type="range"
-        value={bacteriaPercentage}
-        min="0"
-        max="1"
-        step="0.05"
-        onChange={handlePercentageChange}
-      ></input>
-      <button
+    <div className={classes.container}>
+      <div>
+        <Typography
+          style={{ whiteSpace: "nowrap", paddingRight: "10px" }}
+          variant="subtitle2"
+        >
+          Bacteria Percentage:
+        </Typography>
+        <Slider
+          defaultValue={0.5}
+          aria-labelledby="discrete-slider"
+          valueLabelDisplay="auto"
+          step={0.1}
+          marks
+          min={0}
+          max={1}
+          className={classes.slider}
+          onChange={handlePercentageChange}
+        />
+      </div>
+      <Button
+        style={{ whiteSpace: "nowrap" }}
         onClick={() =>
           randomiseBoard(grid, setGrid, bacteriaPercentage, isMutant)
         }
       >
-        Randomise the bacteria!
-      </button>
+        Randomise the board!
+      </Button>
     </div>
   );
 };

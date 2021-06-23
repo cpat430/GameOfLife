@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useContext } from "react";
-import { STRUCTURE_URI } from "../constants";
+import { DEAD, STRUCTURE_URI } from "../constants";
 import { StructureContext } from "./StructureContext";
 
 type GridContextType = {
@@ -16,12 +16,14 @@ type GridContextType = {
     j: number;
     value: number;
   }) => void;
+  resetGrid: () => void;
 };
 
 const initialState: GridContextType = {
   grid: [],
   setGrid: () => {},
   updateGrid: () => {},
+  resetGrid: () => {},
 };
 
 // creating a context for the access token so it is available for all components.
@@ -51,7 +53,7 @@ const GridContextProvider: React.FC = ({ children }) => {
     const n = newGrid.length;
     const m = newGrid[0].length;
 
-    if (structure == "none") {
+    if (structure === "none") {
       newGrid[i][j] = value;
     } else {
       // get the structure from the server
@@ -78,11 +80,23 @@ const GridContextProvider: React.FC = ({ children }) => {
     setGrid(newGrid);
   };
 
+  const resetGrid = () => {
+    const newGrid = [...grid];
+
+    for (let i = 0; i < newGrid.length; i++) {
+      for (let j = 0; j < newGrid[0].length; j++) {
+        newGrid[i][j] = DEAD;
+      }
+    }
+    setGrid(newGrid);
+  };
+
   // The context value that will be supplied to any descendants of this component.
   const context = {
     grid,
     setGrid,
     updateGrid,
+    resetGrid,
   };
 
   // Wraps the given child components in a Provider for the above context.

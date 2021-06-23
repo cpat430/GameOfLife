@@ -27,10 +27,6 @@ export const Grid = (props: GridProps) => {
 
   useEffect(() => {
     setGrid(initGrid({ rows, cols }));
-  }, []);
-
-  useEffect(() => {
-    setGrid(initGrid({ rows, cols }));
   }, [rows, cols]);
 
   return (

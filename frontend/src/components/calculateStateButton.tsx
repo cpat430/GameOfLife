@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { GAME_OF_LIFE_URI } from "../constants";
 import { GridContext } from "../providers/GridContext";
 import { MutantContext } from "../providers/MutantContext";
+import { Button } from "@material-ui/core";
 
 export const CalculateStateButton = () => {
   const { grid, setGrid } = useContext(GridContext);
@@ -19,7 +20,9 @@ export const CalculateStateButton = () => {
 
   return (
     <div>
-      <button onClick={getNextState}>Calculate Next State</button>
+      <Button variant="outlined" onClick={getNextState}>
+        Calculate Next State
+      </Button>
     </div>
   );
 };

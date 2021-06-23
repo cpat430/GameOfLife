@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { GridSize } from "./gridSize";
-import { RandomiseBacteria } from "./randomiseBacteria";
+import { GridSizeInput } from "./gridSizeInput";
+import { RandomiseBacteriaButton } from "./randomiseBacteriaButton";
 import { StructureType } from "./structureType";
 import { MutantToggle } from "./mutantToggle";
 import { makeStyles } from "@material-ui/core";
+import { ResetGridButton } from "./resetGridButton";
 
 const useStyles = makeStyles(() => ({
   grid: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     flexWrap: "wrap",
     width: "80%",
   },
@@ -25,13 +26,14 @@ export const SettingsBar = ({
   const classes = useStyles();
   return (
     <div className={classes.grid}>
-      <GridSize setGridSize={setGridSize} />
-      <RandomiseBacteria
+      <RandomiseBacteriaButton
         bacteriaPercentage={bacteriaPercentage}
         setBacteriaPercentage={setBacteriaPercentage}
       />
+      <GridSizeInput setGridSize={setGridSize} />
       <StructureType />
       <MutantToggle />
+      <ResetGridButton />
     </div>
   );
 };
