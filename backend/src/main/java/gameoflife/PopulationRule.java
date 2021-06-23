@@ -1,7 +1,5 @@
 package gameoflife;
 
-import org.apache.tomcat.util.bcel.Const;
-
 /**
  * Current Rule:
  * - Survive if they have 2 or 3 neighbours.

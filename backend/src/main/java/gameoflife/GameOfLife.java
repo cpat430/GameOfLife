@@ -2,12 +2,6 @@ package gameoflife;
 
 public class GameOfLife {
 
-//    private int[][] gameBoard =
-//            {{1, 1, 1, 0, 0},
-//            {1, 0, 0, 0, 0},
-//            {0, 0, 0, 0, 0},
-//            {0, 0, 0, 0, 0},
-//            {0, 0, 0, 0, 0}};
     private int[][] gameBoard;
     private int n, m, initialBacteria; // TODO: change the chance to a percentage for the bacteria.
     private int iterations;
