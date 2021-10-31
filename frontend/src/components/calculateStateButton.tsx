@@ -5,7 +5,7 @@ import { GridContext } from "../providers/GridContext";
 import { MutantContext } from "../providers/MutantContext";
 import { Button } from "@material-ui/core";
 
-export const CalculateStateButton: React.FC = () => {
+export const CalculateStateButton = () => {
   const { grid, setGrid } = useContext(GridContext);
   const { isMutant } = useContext(MutantContext);
 
