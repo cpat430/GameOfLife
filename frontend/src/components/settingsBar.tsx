@@ -16,11 +16,15 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const SettingsBar = ({
-  setGridSize,
-}: {
+type SettingsBarProps = {
   setGridSize: (gridSize: number) => void;
-}) => {
+};
+
+export const SettingsBar: React.FC<SettingsBarProps> = (
+  props: SettingsBarProps
+) => {
+  const { setGridSize } = props;
+
   const [bacteriaPercentage, setBacteriaPercentage] = useState<number>(0.5);
 
   const classes = useStyles();

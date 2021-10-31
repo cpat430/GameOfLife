@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
 import { GridContext } from "../providers/GridContext";
 
-export const ResetGridButton = () => {
+export const ResetGridButton: React.FC = () => {
   const { resetGrid } = useContext(GridContext);
 
   const handleClick = () => {

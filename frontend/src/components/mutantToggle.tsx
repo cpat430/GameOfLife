@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const MutantToggle = () => {
+export const MutantToggle: React.FC = () => {
   const { isMutant, setIsMutant } = useContext(MutantContext);
 
   const classes = useStyles();

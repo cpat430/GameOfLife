@@ -29,7 +29,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const Grid = (props: GridProps) => {
+export const Grid: React.FC<GridProps> = (props: GridProps) => {
   const { rows, cols, gridDimensions } = props;
 
   const { grid, setGrid } = useContext(GridContext);
