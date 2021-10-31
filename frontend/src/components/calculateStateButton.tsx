@@ -1,5 +1,5 @@
+import React, { useContext } from "react";
 import axios from "axios";
-import { useContext } from "react";
 import { GAME_OF_LIFE_URI } from "../constants";
 import { GridContext } from "../providers/GridContext";
 import { MutantContext } from "../providers/MutantContext";

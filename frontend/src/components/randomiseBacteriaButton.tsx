@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { ALIVE, DEAD, MUTANT } from "../constants";
 import { GridContext } from "../providers/GridContext";
 import { MutantContext } from "../providers/MutantContext";
@@ -16,6 +16,35 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const randomiseBoard = (
+  board: number[][],
+  setGrid: (board: number[][]) => void,
+  percentage: number,
+  isMutant: boolean
+) => {
+  // iterate through the board and create a new board to set to.
+  const newBoard = [...board];
+
+  for (let i = 0; i < newBoard.length; i++) {
+    for (let j = 0; j < newBoard[0].length; j++) {
+      const rand = Math.random();
+
+      if (rand <= percentage) {
+        if (isMutant) {
+          const randMutant = Math.random();
+          newBoard[i][j] = randMutant > 0.1 ? ALIVE : MUTANT;
+        } else {
+          newBoard[i][j] = ALIVE;
+        }
+      } else {
+        newBoard[i][j] = DEAD;
+      }
+    }
+  }
+
+  setGrid(newBoard);
+};
+
 export const RandomiseBacteriaButton = ({
   bacteriaPercentage,
   setBacteriaPercentage,
@@ -28,6 +57,7 @@ export const RandomiseBacteriaButton = ({
 
   const classes = useStyles();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handlePercentageChange = (event: any, newValue: number | number[]) => {
     setBacteriaPercentage(newValue as number);
   };
@@ -63,33 +93,4 @@ export const RandomiseBacteriaButton = ({
       </Button>
     </div>
   );
-};
-
-const randomiseBoard = (
-  board: number[][],
-  setGrid: (board: number[][]) => void,
-  percentage: number,
-  isMutant: boolean
-) => {
-  // iterate through the board and create a new board to set to.
-  const newBoard = [...board];
-
-  for (let i = 0; i < newBoard.length; i++) {
-    for (let j = 0; j < newBoard[0].length; j++) {
-      const rand = Math.random();
-
-      if (rand <= percentage) {
-        if (isMutant) {
-          const randMutant = Math.random();
-          newBoard[i][j] = randMutant > 0.1 ? ALIVE : MUTANT;
-        } else {
-          newBoard[i][j] = ALIVE;
-        }
-      } else {
-        newBoard[i][j] = DEAD;
-      }
-    }
-  }
-
-  setGrid(newBoard);
 };

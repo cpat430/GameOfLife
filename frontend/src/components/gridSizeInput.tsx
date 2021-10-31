@@ -1,10 +1,12 @@
-import { Typography, TextField } from "@material-ui/core";
+import React from "react";
+import { TextField } from "@material-ui/core";
 
 export const GridSizeInput = ({
   setGridSize,
 }: {
   setGridSize: (gridSize: number) => void;
 }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleChange = (event: any) => {
     if (!event.target.value) return;
 
