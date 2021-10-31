@@ -7,7 +7,7 @@ type MutantContextType = {
 
 const initialState: MutantContextType = {
   isMutant: false,
-  setIsMutant: () => {},
+  setIsMutant: () => null,
 };
 
 // creating a context for the access token so it is available for all components.

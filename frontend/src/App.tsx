@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function App() {
+const App = () => {
   const gridHeight = window.innerHeight * 0.7;
 
   const classes = useStyles();
@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="App">
       <div style={{ textAlign: "center" }}>
-        <Typography variant="h2">Conway's Game of Life</Typography>
+        <Typography variant="h2">Conways Game of Life</Typography>
       </div>
       <div
         className={classes.center}
@@ -56,6 +56,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;

@@ -1,19 +1,12 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { MutantContext } from "../providers/MutantContext";
-import {
-  Typography,
-  Checkbox,
-  FormGroup,
-  FormControlLabel,
-  makeStyles,
-} from "@material-ui/core";
+import { Checkbox, FormControlLabel, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   container: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    // padding: "5px",
   },
 }));
 

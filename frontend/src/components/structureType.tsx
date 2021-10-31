@@ -7,6 +7,7 @@ export const StructureType = () => {
   const { structure, setStructure } = useContext(StructureContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleChange = (event: any) => {
     const { value } = event.target;
 
@@ -17,6 +18,7 @@ export const StructureType = () => {
     setAnchorEl(event.currentTarget);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClose = (event: any) => {
     if (event.target.innerText) {
       setStructure(event.target.innerText);
@@ -48,8 +50,12 @@ export const StructureType = () => {
           onClose={handleClose}
           open={Boolean(anchorEl)}
         >
-          {TYPES.map((type) => {
-            return <MenuItem onClick={handleClose}>{type}</MenuItem>;
+          {TYPES.map((type, idx) => {
+            return (
+              <MenuItem key={idx} onClick={handleClose}>
+                {type}
+              </MenuItem>
+            );
           })}
         </Menu>
       </form>

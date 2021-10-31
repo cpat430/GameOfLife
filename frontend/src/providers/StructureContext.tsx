@@ -7,7 +7,7 @@ type StructureContextType = {
 
 const initialState: StructureContextType = {
   structure: "",
-  setStructure: () => {},
+  setStructure: () => null,
 };
 
 // creating a context for the access token so it is available for all components.

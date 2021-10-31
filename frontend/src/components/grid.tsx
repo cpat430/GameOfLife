@@ -3,6 +3,20 @@ import { Cell } from "./cell";
 import { makeStyles } from "@material-ui/core";
 import { GridContext } from "../providers/GridContext";
 
+const initGrid = (props: GridProps) => {
+  const { rows, cols } = props;
+  const newGrid: number[][] = [];
+
+  for (let i = 0; i < rows; i++) {
+    newGrid[i] = [];
+    for (let j = 0; j < cols; j++) {
+      newGrid[i][j] = 0;
+    }
+  }
+
+  return newGrid;
+};
+
 type GridProps = {
   rows: number;
   cols: number;
@@ -27,14 +41,14 @@ export const Grid = (props: GridProps) => {
 
   useEffect(() => {
     setGrid(initGrid({ rows, cols }));
-  }, [rows, cols]);
+  }, [rows, cols, setGrid]);
 
   return (
     <>
       <div id="grid">
         {grid.map((row, idx) => {
           return (
-            <div className={classes.row}>
+            <div className={classes.row} key={idx}>
               {row.map((ele, jdx) => {
                 return (
                   <Cell
@@ -53,19 +67,4 @@ export const Grid = (props: GridProps) => {
       </div>
     </>
   );
-};
-
-const initGrid = (props: GridProps) => {
-  const { rows, cols } = props;
-  let newGrid: number[][];
-
-  newGrid = [];
-  for (let i: number = 0; i < rows; i++) {
-    newGrid[i] = [];
-    for (let j: number = 0; j < cols; j++) {
-      newGrid[i][j] = 0;
-    }
-  }
-
-  return newGrid;
 };

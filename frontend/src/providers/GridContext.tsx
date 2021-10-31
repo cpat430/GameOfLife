@@ -1,8 +1,15 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { DEAD, STRUCTURE_URI } from "../constants";
 import { StructureContext } from "./StructureContext";
+
+const ob = (i: number, n: number) => {
+  if (i < 0 || i >= n) {
+    return true;
+  }
+
+  return false;
+};
 
 type GridContextType = {
   grid: number[][];
@@ -21,9 +28,9 @@ type GridContextType = {
 
 const initialState: GridContextType = {
   grid: [],
-  setGrid: () => {},
-  updateGrid: () => {},
-  resetGrid: () => {},
+  setGrid: () => [],
+  updateGrid: () => [],
+  resetGrid: () => [],
 };
 
 // creating a context for the access token so it is available for all components.
@@ -103,14 +110,6 @@ const GridContextProvider: React.FC = ({ children }) => {
   return (
     <GridContext.Provider value={context}>{children}</GridContext.Provider>
   );
-};
-
-const ob = (i: number, n: number) => {
-  if (i < 0 || i >= n) {
-    return true;
-  }
-
-  return false;
 };
 
 export { GridContext, GridContextProvider };

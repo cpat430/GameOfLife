@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { GridSizeInput } from "./gridSizeInput";
 import { RandomiseBacteriaButton } from "./randomiseBacteriaButton";
 import { StructureType } from "./structureType";
