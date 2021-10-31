@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const App = () => {
+const App: React.FC = () => {
   const gridHeight = window.innerHeight * 0.7;
 
   const classes = useStyles();

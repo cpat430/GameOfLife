@@ -3,7 +3,7 @@ import { TYPES } from "../constants";
 import { StructureContext } from "../providers/StructureContext";
 import { Menu, MenuItem, Button, Typography } from "@material-ui/core";
 
-export const StructureType = () => {
+export const StructureType: React.FC = () => {
   const { structure, setStructure } = useContext(StructureContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 

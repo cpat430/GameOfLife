@@ -45,13 +45,15 @@ const randomiseBoard = (
   setGrid(newBoard);
 };
 
-export const RandomiseBacteriaButton = ({
-  bacteriaPercentage,
-  setBacteriaPercentage,
-}: {
+type RandomiseBacteriaButtonProps = {
   bacteriaPercentage: number;
   setBacteriaPercentage: (percentage: number) => void;
-}) => {
+};
+
+export const RandomiseBacteriaButton: React.FC<RandomiseBacteriaButtonProps> = (
+  props: RandomiseBacteriaButtonProps
+) => {
+  const { bacteriaPercentage, setBacteriaPercentage } = props;
   const { grid, setGrid } = useContext(GridContext);
   const { isMutant } = useContext(MutantContext);
 

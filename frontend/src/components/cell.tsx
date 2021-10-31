@@ -26,19 +26,17 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const Cell = ({
-  initialValue,
-  cellHeight,
-  cellWidth,
-  i,
-  j,
-}: {
+type CellProps = {
   initialValue: number;
   cellHeight: number;
   cellWidth: number;
   i: number;
   j: number;
-}) => {
+};
+
+export const Cell: React.FC<CellProps> = (props: CellProps) => {
+  const { initialValue, cellHeight, cellWidth, i, j } = props;
+
   const classes = useStyles({ cellHeight, cellWidth });
   const [cellValue, setCellValue] = useState<number>(initialValue);
 
