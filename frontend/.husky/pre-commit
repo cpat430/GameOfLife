@@ -3,3 +3,4 @@
 
 cd frontend
 yarn lint-staged
+echo "done"
