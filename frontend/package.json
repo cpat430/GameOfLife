@@ -15,9 +15,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
-    "postinstall": "cd .. && husky install frontend/.husky"
+    "postinstall": "cd .. && husky install frontend/.husky",
+    "lint": "eslint . --max-warnings=0",
+    "prettier": "prettier --ignore-unknown --write"
   },
   "eslintConfig": {
     "extends": [
@@ -54,9 +56,5 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "lint-staged": ">=10",
     "prettier": "2.3.1"
-  },
-  "lint-staged": {
-    "frontend/src/**/*.{ts,tsx,js,jsx}": "eslint --fix --cache --max-warnings=0 .",
-    "*": "prettier --ignore-unknown --write"
   }
 }
