@@ -1,7 +1,5 @@
 package gameoflife;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +22,22 @@ public class GameOfLifeController {
     public int[][] nextBoard(@RequestBody int[][] currentBoard, @PathParam("isMutant") boolean isMutant) {
         GameOfLife gameOfLife = new GameOfLife();
         int[][] nextBoardState = gameOfLife.calculateNextState(currentBoard, isMutant);
+
+        return nextBoardState;
+    }
+
+    @PostMapping("/game-of-life-multithreaded")
+    public int[][] nextBoardMultithreaded(@RequestBody int[][] currentBoard, @PathParam("isMutant") boolean isMutant) throws InterruptedException {
+
+        int[][] nextBoardState;
+
+        // create 4 threads for the graph if it is bigger than 5x5
+        if (currentBoard.length > 5) {
+            nextBoardState = MultithreadingCalculationProcess.getNextMultithreadedState(currentBoard,  isMutant);
+        } else {
+            GameOfLife gameOfLife = new GameOfLife();
+            nextBoardState = gameOfLife.calculateNextState(currentBoard, isMutant);
+        }
 
         return nextBoardState;
     }
