@@ -57,6 +57,46 @@ public class GameOfLife {
         return nextBoard;
     }
 
+    /**
+     * Calculates the next state of a small subset of the board. Only will use this if the size of the board
+     * is greater than 5x5.
+     *
+     * @param gameBoard
+     * @param startingI
+     * @param startingJ
+     * @param endI
+     * @param endJ
+     * @param isMutant
+     * @return
+     */
+    public int[][] calculateNextStateMultithreaded(int[][] gameBoard, int startingI, int startingJ, int endI, int endJ, boolean isMutant) {
+
+        int[][] nextBoard = new int[endI - startingI][endJ - startingJ];
+        int x = (endI - startingI);
+        int y = (endJ - startingJ);
+
+        // iterate through each position
+        for (int i = startingI; i < endI; i++) {
+            for (int j = startingJ; j < endJ; j++) {
+                // for each spot, count neighbours
+                Neighbour numOfNeighbours = countNeighbours(gameBoard, i,j);
+
+                int populateTo = 0;
+
+                if (isMutant) {
+                    // check if we need to change the type
+                    populateTo = PopulationRule.toPopulateTo(gameBoard[i][j], numOfNeighbours.normalNeighbours, numOfNeighbours.mutantNeighbours);
+                } else {
+                    populateTo = PopulationRule.toPopulateTo(gameBoard[i][j], numOfNeighbours.normalNeighbours);
+                }
+
+                nextBoard[i-startingI][j-startingJ] = populateTo;
+            }
+        }
+
+        return nextBoard;
+    }
+
     private boolean outOfBounds(int i, int n) {
 
         if (i < 0 || i >= n) {
