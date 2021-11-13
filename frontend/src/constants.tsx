@@ -3,6 +3,8 @@ export const MIN_GRID_SIZE = 5;
 export const MAX_GRID_SIZE = 30;
 
 export const GAME_OF_LIFE_URI = "http://localhost:8080/game-of-life";
+export const GAME_OF_LIFE_MULTITHREAD_URI =
+  "http://localhost:8080/game-of-life-multithreaded";
 export const STRUCTURE_URI = "http://localhost:8080/structures";
 
 export const DEAD = 0;
