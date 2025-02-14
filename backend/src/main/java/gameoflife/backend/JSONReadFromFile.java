@@ -1,26 +1,20 @@
-package gameoflife;
+package gameoflife.backend;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
 public class JSONReadFromFile {
 
-    private static final String STRUCTURE_URL = "src/main/resources/structures/gameOfLifeStructures.json";
+    private static final String STRUCTURE_URL = "structures/gameOfLifeStructures.json";
 
-    public static Map<String, int[][]> readStructuresIntoMap() {
+    public Map<String, int[][]> readStructuresIntoMap() {
 
-        Map<String, int[][]> structures = new HashMap<>();
-        List<String> types = new ArrayList<>() {
+        Map<String, int[][]> structures = new HashMap<String, int[][]>();
+        List<String> types = new ArrayList<String>() {
             {
                 add("still-lifes");
                 add("oscillators");
@@ -28,15 +22,15 @@ public class JSONReadFromFile {
             }
         }; // todo, add these from somewhere else
 
+        InputStream is = null;
         try {
-            InputStream is = new FileInputStream(new File(STRUCTURE_URL));
-            if (is == null) {
-                throw new NullPointerException("Cannot find resource file " + STRUCTURE_URL);
-            }
+            File file = new File(
+                    getClass().getClassLoader().getResource(STRUCTURE_URL).getFile());
+            is = new FileInputStream(file);
 
             JSONTokener tokener = new JSONTokener(is);
             JSONObject jsonObject = new JSONObject(tokener);
-            
+
             // iterate through all the types
             for (String type : types) {
 
@@ -44,40 +38,40 @@ public class JSONReadFromFile {
 
                 // get the names of the structures in the object.
                 JSONArray jsonArray = typeObject.names();
-                List<String> names = new ArrayList<>();
-                jsonArray.forEach((name) -> names.add((String)name));
+                List<String> names = new ArrayList<String>();
+                jsonArray.forEach((name) -> names.add((String) name));
 
                 // iterate through each of the structures grids
                 // e.g still-life, oscillators, spaceships.
                 for (String name : names) {
                     JSONArray jsonGrid = typeObject.getJSONArray(name);
-    
+
                     List<List<Integer>> grid = new ArrayList<>();
                     for (int i = 0; i < jsonGrid.length(); i++) {
-                        List<Integer> row = (ArrayList) jsonGrid.getJSONArray(i).toList();
-                        grid.add(row);
+                        List<Object> row = jsonGrid.getJSONArray(i).toList();
+                        int[] integerRow = row.stream().mapToInt((a) -> Integer.parseInt(a.toString())).toArray();
+                        grid.add(Arrays.stream(integerRow).boxed().toList());
                     }
-    
+
                     int n = grid.size();
                     int m = grid.get(0).size();
-    
+
                     int[][] intGrid = new int[n][m];
-    
+
                     for (int i = 0; i < n; i++) {
                         for (int j = 0; j < m; j++) {
                             intGrid[i][j] = grid.get(i).get(j);
                         }
                     }
-    
+
                     structures.put(name, intGrid);
                 }
             }
 
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return structures;
     }
 }
-

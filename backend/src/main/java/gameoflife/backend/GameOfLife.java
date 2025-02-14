@@ -1,4 +1,4 @@
-package gameoflife;
+package gameoflife.backend;
 
 public class GameOfLife {
 
@@ -39,13 +39,14 @@ public class GameOfLife {
             for (int j = 0; j < m; j++) {
 
                 // for each spot, count neighbours
-                Neighbour numOfNeighbours = countNeighbours(gameBoard, i,j);
+                Neighbour numOfNeighbours = countNeighbours(gameBoard, i, j);
 
                 int populateTo = 0;
 
                 if (isMutant) {
                     // check if we need to change the type
-                    populateTo = PopulationRule.toPopulateTo(gameBoard[i][j], numOfNeighbours.normalNeighbours, numOfNeighbours.mutantNeighbours);
+                    populateTo = PopulationRule.toPopulateTo(gameBoard[i][j], numOfNeighbours.normalNeighbours,
+                            numOfNeighbours.mutantNeighbours);
                 } else {
                     populateTo = PopulationRule.toPopulateTo(gameBoard[i][j], numOfNeighbours.normalNeighbours);
                 }
@@ -58,7 +59,8 @@ public class GameOfLife {
     }
 
     /**
-     * Calculates the next state of a small subset of the board. Only will use this if the size of the board
+     * Calculates the next state of a small subset of the board. Only will use this
+     * if the size of the board
      * is greater than 5x5.
      *
      * @param gameBoard
@@ -69,28 +71,30 @@ public class GameOfLife {
      * @param isMutant
      * @return
      */
-    public int[][] calculateNextStateMultithreaded(int[][] gameBoard, int startingI, int startingJ, int endI, int endJ, boolean isMutant) {
+    public int[][] calculateNextStateMultithreaded(int[][] gameBoard, int startingI, int startingJ, int endI, int endJ,
+            boolean isMutant) {
 
-        int[][] nextBoard = new int[endI - startingI][endJ - startingJ];
         int x = (endI - startingI);
         int y = (endJ - startingJ);
+        int[][] nextBoard = new int[x][y];
 
         // iterate through each position
         for (int i = startingI; i < endI; i++) {
             for (int j = startingJ; j < endJ; j++) {
                 // for each spot, count neighbours
-                Neighbour numOfNeighbours = countNeighbours(gameBoard, i,j);
+                Neighbour numOfNeighbours = countNeighbours(gameBoard, i, j);
 
                 int populateTo = 0;
 
                 if (isMutant) {
                     // check if we need to change the type
-                    populateTo = PopulationRule.toPopulateTo(gameBoard[i][j], numOfNeighbours.normalNeighbours, numOfNeighbours.mutantNeighbours);
+                    populateTo = PopulationRule.toPopulateTo(gameBoard[i][j], numOfNeighbours.normalNeighbours,
+                            numOfNeighbours.mutantNeighbours);
                 } else {
                     populateTo = PopulationRule.toPopulateTo(gameBoard[i][j], numOfNeighbours.normalNeighbours);
                 }
 
-                nextBoard[i-startingI][j-startingJ] = populateTo;
+                nextBoard[i - startingI][j - startingJ] = populateTo;
             }
         }
 
@@ -112,9 +116,9 @@ public class GameOfLife {
         int normalNeighbours = 0;
         int mutantNeighbours = 0;
 
-        for (int ii = i-1; ii <= i+1; ii++) {
-            for (int jj = j-1; jj <= j+1; jj++) {
-                if (outOfBounds(ii,n) || outOfBounds(jj,m)) {
+        for (int ii = i - 1; ii <= i + 1; ii++) {
+            for (int jj = j - 1; jj <= j + 1; jj++) {
+                if (outOfBounds(ii, n) || outOfBounds(jj, m)) {
                     continue;
                 }
 
@@ -152,8 +156,8 @@ public class GameOfLife {
      */
     private void populateBoard(int initialBacteria) {
         for (int b = 0; b < initialBacteria; b++) {
-            int i = (int)(Math.random() * n);
-            int j = (int)(Math.random() * m);
+            int i = (int) (Math.random() * n);
+            int j = (int) (Math.random() * m);
 
             gameBoard[i][j] = Constants.ALIVE;
         }
