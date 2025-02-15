@@ -12,7 +12,7 @@ export const CalculateStateButton: React.FC = () => {
   const getNextState = async () => {
     const response = await axios.post(
       GAME_OF_LIFE_MULTITHREAD_URI + `?isMutant=${isMutant}`,
-      grid
+      { currentBoard: grid }
     );
     const { data } = response;
     setGrid(data);
