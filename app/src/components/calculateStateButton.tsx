@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import axios from "axios";
-import { GAME_OF_LIFE_MULTITHREAD_URI } from "../constants";
-import { GridContext } from "../providers/GridContext";
-import { MutantContext } from "../providers/MutantContext";
-import { Button } from "@material-ui/core";
+import React, { useContext } from 'react';
+import axios from 'axios';
+import { GAME_OF_LIFE_MULTITHREAD_URI } from '../constants';
+import { GridContext } from '../providers/GridContext';
+import { MutantContext } from '../providers/MutantContext';
+import { Button } from '@mui/material';
 
 export const CalculateStateButton: React.FC = () => {
   const { grid, setGrid } = useContext(GridContext);

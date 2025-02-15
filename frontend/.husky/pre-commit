@@ -1,9 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-cd frontend
-echo "Running linter 💨"
-yarn lint
-
-echo "Running prettier 👩‍🦳"
-yarn prettier

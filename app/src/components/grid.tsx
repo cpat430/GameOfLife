@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from "react";
-import { Cell } from "./cell";
-import { makeStyles } from "@material-ui/core";
-import { GridContext } from "../providers/GridContext";
+import React, { useContext, useEffect } from 'react';
+import { Cell } from './cell';
+import { Box } from '@mui/material';
+import { GridContext } from '../providers/GridContext';
 
 const initGrid = (props: GridProps) => {
   const { rows, cols } = props;
@@ -23,18 +23,10 @@ type GridProps = {
   gridDimensions?: number;
 };
 
-const useStyles = makeStyles(() => ({
-  row: {
-    display: "flex",
-  },
-}));
-
 export const Grid: React.FC<GridProps> = (props: GridProps) => {
   const { rows, cols, gridDimensions } = props;
 
   const { grid, setGrid } = useContext(GridContext);
-
-  const classes = useStyles();
 
   const cellHeight = gridDimensions || 0 / rows;
   const cellWidth = gridDimensions || 0 / cols;
@@ -48,11 +40,11 @@ export const Grid: React.FC<GridProps> = (props: GridProps) => {
       <div id="grid">
         {grid.map((row, idx) => {
           return (
-            <div className={classes.row} key={idx}>
+            <Box sx={{ display: 'flex' }} key={idx}>
               {row.map((ele, jdx) => {
                 return (
                   <Cell
-                    key={idx + "" + jdx}
+                    key={idx + '' + jdx}
                     initialValue={ele}
                     cellHeight={cellHeight}
                     cellWidth={cellWidth}
@@ -61,7 +53,7 @@ export const Grid: React.FC<GridProps> = (props: GridProps) => {
                   />
                 );
               })}
-            </div>
+            </Box>
           );
         })}
       </div>

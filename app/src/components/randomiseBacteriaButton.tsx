@@ -1,20 +1,8 @@
-import React, { useContext } from "react";
-import { ALIVE, DEAD, MUTANT } from "../constants";
-import { GridContext } from "../providers/GridContext";
-import { MutantContext } from "../providers/MutantContext";
-import { Button, makeStyles, Slider, Typography } from "@material-ui/core";
-
-const useStyles = makeStyles(() => ({
-  slider: {
-    width: "100%",
-  },
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexGrow: 3,
-  },
-}));
+import React, { useContext } from 'react';
+import { ALIVE, DEAD, MUTANT } from '../constants';
+import { GridContext } from '../providers/GridContext';
+import { MutantContext } from '../providers/MutantContext';
+import { Button, Slider, Stack, Typography } from '@mui/material';
 
 const randomiseBoard = (
   board: number[][],
@@ -57,18 +45,16 @@ export const RandomiseBacteriaButton: React.FC<RandomiseBacteriaButtonProps> = (
   const { grid, setGrid } = useContext(GridContext);
   const { isMutant } = useContext(MutantContext);
 
-  const classes = useStyles();
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handlePercentageChange = (event: any, newValue: number | number[]) => {
     setBacteriaPercentage(newValue as number);
   };
 
   return (
-    <div className={classes.container}>
+    <Stack flexGrow={3}>
       <div>
         <Typography
-          style={{ whiteSpace: "nowrap", paddingRight: "10px" }}
+          style={{ whiteSpace: 'nowrap', paddingRight: '10px' }}
           variant="subtitle2"
         >
           Bacteria Percentage:
@@ -81,18 +67,18 @@ export const RandomiseBacteriaButton: React.FC<RandomiseBacteriaButtonProps> = (
           marks
           min={0}
           max={1}
-          className={classes.slider}
+          sx={{ width: '100%' }}
           onChange={handlePercentageChange}
         />
       </div>
       <Button
-        style={{ whiteSpace: "nowrap" }}
+        style={{ whiteSpace: 'nowrap' }}
         onClick={() =>
           randomiseBoard(grid, setGrid, bacteriaPercentage, isMutant)
         }
       >
         Randomise the board!
       </Button>
-    </div>
+    </Stack>
   );
 };
