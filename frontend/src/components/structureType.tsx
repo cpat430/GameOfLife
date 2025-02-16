@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
-import { TYPES } from "../constants";
-import { StructureContext } from "../providers/StructureContext";
-import { Menu, MenuItem, Button, Typography } from "@material-ui/core";
+import React, { useState, useContext } from 'react';
+import { TYPES } from '../constants';
+import { StructureContext } from '../providers/StructureContext';
+import { Menu, MenuItem, Button, Typography } from '@mui/material';
 
 export const StructureType: React.FC = () => {
   const { structure, setStructure } = useContext(StructureContext);
@@ -27,12 +27,12 @@ export const StructureType: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: "5px" }}>
+    <div style={{ padding: '5px' }}>
       <form onChange={handleChange} style={{}}>
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           <Typography variant="subtitle2">Structure Types: </Typography>

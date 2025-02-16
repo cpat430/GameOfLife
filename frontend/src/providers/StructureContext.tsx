@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 type StructureContextType = {
   structure: string;
@@ -6,7 +6,7 @@ type StructureContextType = {
 };
 
 const initialState: StructureContextType = {
-  structure: "",
+  structure: '',
   setStructure: () => null,
 };
 
@@ -20,8 +20,10 @@ const StructureContext =
  * @param {React.Component[]} children
  * @returns the context provider.
  */
-const StructureContextProvider: React.FC = ({ children }) => {
-  const [structure, setStructure] = useState<string>("none");
+const StructureContextProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [structure, setStructure] = useState<string>('none');
 
   // The context value that will be supplied to any descendants of this component.
   const context = {

@@ -1,20 +1,10 @@
-import React, { useState } from "react";
-import { GridSizeInput } from "./gridSizeInput";
-import { RandomiseBacteriaButton } from "./randomiseBacteriaButton";
-import { StructureType } from "./structureType";
-import { MutantToggle } from "./mutantToggle";
-import { makeStyles } from "@material-ui/core";
-import { ResetGridButton } from "./resetGridButton";
-
-const useStyles = makeStyles(() => ({
-  grid: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    flexWrap: "wrap",
-    width: "80%",
-  },
-}));
+import React, { useState } from 'react';
+import { GridSizeInput } from './gridSizeInput';
+import { RandomiseBacteriaButton } from './randomiseBacteriaButton';
+import { StructureType } from './structureType';
+import { MutantToggle } from './mutantToggle';
+import { Box } from '@mui/material';
+import { ResetGridButton } from './resetGridButton';
 
 type SettingsBarProps = {
   setGridSize: (gridSize: number) => void;
@@ -27,9 +17,17 @@ export const SettingsBar: React.FC<SettingsBarProps> = (
 
   const [bacteriaPercentage, setBacteriaPercentage] = useState<number>(0.5);
 
-  const classes = useStyles();
   return (
-    <div className={classes.grid}>
+    // TODO: update this to use a mui grid
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        flexWrap: 'wrap',
+        width: '80%',
+        alignItems: 'center',
+      }}
+    >
       <RandomiseBacteriaButton
         bacteriaPercentage={bacteriaPercentage}
         setBacteriaPercentage={setBacteriaPercentage}
@@ -38,6 +36,6 @@ export const SettingsBar: React.FC<SettingsBarProps> = (
       <StructureType />
       <MutantToggle />
       <ResetGridButton />
-    </div>
+    </Box>
   );
 };

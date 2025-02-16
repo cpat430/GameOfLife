@@ -1,5 +1,5 @@
-import React from "react";
-import { TextField } from "@material-ui/core";
+import React from 'react';
+import { TextField } from '@mui/material';
 
 type GridSizeInputProps = {
   setGridSize: (gridSize: number) => void;
@@ -24,7 +24,7 @@ export const GridSizeInput: React.FC<GridSizeInputProps> = (
   };
 
   return (
-    <div style={{ padding: "5px" }}>
+    <div style={{ padding: '5px' }}>
       <TextField
         id="standard-basic"
         label="Grid Size"

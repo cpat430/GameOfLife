@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 type MutantContextType = {
   isMutant: boolean;
@@ -19,7 +19,9 @@ const MutantContext = React.createContext<MutantContextType>(initialState);
  * @param {React.Component[]} children
  * @returns the context provider.
  */
-const MutantContextProvider: React.FC = ({ children }) => {
+const MutantContextProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [isMutant, setIsMutant] = useState<boolean>(false);
 
   // The context value that will be supplied to any descendants of this component.

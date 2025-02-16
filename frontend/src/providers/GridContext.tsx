@@ -1,7 +1,7 @@
-import axios from "axios";
-import React, { useState, useContext } from "react";
-import { DEAD, STRUCTURE_URI } from "../constants";
-import { StructureContext } from "./StructureContext";
+import axios from 'axios';
+import React, { useState, useContext } from 'react';
+import { DEAD, STRUCTURE_URI } from '../constants';
+import { StructureContext } from './StructureContext';
 
 const ob = (i: number, n: number) => {
   if (i < 0 || i >= n) {
@@ -42,7 +42,9 @@ const GridContext = React.createContext<GridContextType>(initialState);
  * @param {React.Component[]} children
  * @returns the context provider.
  */
-const GridContextProvider: React.FC = ({ children }) => {
+const GridContextProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [grid, setGrid] = useState<number[][]>([]);
 
   const { structure } = useContext(StructureContext);
@@ -60,7 +62,7 @@ const GridContextProvider: React.FC = ({ children }) => {
     const n = newGrid.length;
     const m = newGrid[0].length;
 
-    if (structure === "none") {
+    if (structure === 'none') {
       newGrid[i][j] = value;
     } else {
       // get the structure from the server
