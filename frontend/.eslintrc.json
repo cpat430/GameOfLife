@@ -22,10 +22,10 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "simple-import-sort"],
   "rules": {
     "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["error"],
+    "@typescript-eslint/no-use-before-define": "error",
     "react/jsx-filename-extension": [
       "warn",
       {
@@ -46,8 +46,28 @@
       {
         "namedComponents": "arrow-function"
       }
-    ]
+    ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
   },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "rules": {
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              ["^react$", "^[a-z]"],
+              ["^@"],
+              ["^\\.\\.(?!/?$)", "^\\.\\./?$"], // start with ../
+              ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"] // start with ./
+            ]
+          }
+        ]
+      }
+    }
+  ],
   "settings": {
     "react": {
       "version": "detect"

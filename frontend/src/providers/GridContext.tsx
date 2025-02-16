@@ -1,6 +1,8 @@
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
-import React, { useState, useContext } from 'react';
+
 import { DEAD, STRUCTURE_URI } from '../constants';
+
 import { StructureContext } from './StructureContext';
 
 const ob = (i: number, n: number) => {

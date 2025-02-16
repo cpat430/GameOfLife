@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
+
+import { Button, Slider, Stack, Typography } from '@mui/material';
+
 import { ALIVE, DEAD, MUTANT } from '../constants';
 import { GridContext } from '../providers/GridContext';
 import { MutantContext } from '../providers/MutantContext';
-import { Button, Slider, Stack, Typography } from '@mui/material';
 
 const randomiseBoard = (
   board: number[][],

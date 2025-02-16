@@ -1,7 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
+
+import { Button, Menu, MenuItem, Typography } from '@mui/material';
+
 import { TYPES } from '../constants';
 import { StructureContext } from '../providers/StructureContext';
-import { Menu, MenuItem, Button, Typography } from '@mui/material';
 
 export const StructureType: React.FC = () => {
   const { structure, setStructure } = useContext(StructureContext);

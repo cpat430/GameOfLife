@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import './App.css';
-import { Grid } from './components/grid';
-import { CalculateStateButton } from './components/calculateStateButton';
-import { DEFAULT_GRID_SIZE } from './constants';
-import { SettingsBar } from './components/settingsBar';
+
 import { Stack, Typography } from '@mui/material';
+
+import { CalculateStateButton } from './components/calculateStateButton';
+import { Grid } from './components/grid';
+import { SettingsBar } from './components/settingsBar';
+import { DEFAULT_GRID_SIZE } from './constants';
+
+import './App.css';
 
 const App: React.FC = () => {
   const gridHeight = window.innerHeight * 0.7;

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { GridSizeInput } from './gridSizeInput';
-import { RandomiseBacteriaButton } from './randomiseBacteriaButton';
-import { StructureType } from './structureType';
-import { MutantToggle } from './mutantToggle';
+
 import { Box } from '@mui/material';
+
+import { GridSizeInput } from './gridSizeInput';
+import { MutantToggle } from './mutantToggle';
+import { RandomiseBacteriaButton } from './randomiseBacteriaButton';
 import { ResetGridButton } from './resetGridButton';
+import { StructureType } from './structureType';
 
 type SettingsBarProps = {
   setGridSize: (gridSize: number) => void;

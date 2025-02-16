@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+
 import { GridContextProvider } from './providers/GridContext';
-import { StructureContextProvider } from './providers/StructureContext';
 import { MutantContextProvider } from './providers/MutantContext';
+import { StructureContextProvider } from './providers/StructureContext';
+import App from './App';
+
+import './index.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
