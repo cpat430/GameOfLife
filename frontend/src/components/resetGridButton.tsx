@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
+
 import { Button } from '@mui/material';
+
 import { GridContext } from '../providers/GridContext';
 
 export const ResetGridButton: React.FC = () => {

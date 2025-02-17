@@ -12,13 +12,17 @@
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1"
   },
+  "overrides": {
+    "typescript": "^5.7.3"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint . --max-warnings=0",
-    "prettier": "prettier --ignore-unknown --write"
+    "lint:fix": "eslint . --max-warnings=0 --fix",
+    "prettier": "prettier --write src/**/*"
   },
   "eslintConfig": {
     "extends": [
@@ -53,6 +57,7 @@
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "prettier": "^3.5.1",
     "typescript": "^5.7.3"
   }

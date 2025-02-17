@@ -1,7 +1,10 @@
 import React, { useContext, useEffect } from 'react';
-import { Cell } from './cell';
+
 import { Box } from '@mui/material';
+
 import { GridContext } from '../providers/GridContext';
+
+import { Cell } from './cell';
 
 const initGrid = (props: GridProps) => {
   const { rows, cols } = props;

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { TextField } from '@mui/material';
 
 type GridSizeInputProps = {
@@ -10,17 +11,19 @@ export const GridSizeInput: React.FC<GridSizeInputProps> = (
 ) => {
   const { setGridSize } = props;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleChange = (event: any) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     if (!event.target.value) return;
+    const targetValue = parseInt(event.target.value);
 
-    if (event.target.value > 30) {
-      event.target.value = 30;
-    } else if (event.target.value <= 0) {
-      event.target.value = 1;
+    if (targetValue > 30) {
+      event.target.value = '30';
+    } else if (targetValue <= 0) {
+      event.target.value = '1';
     }
 
-    setGridSize(event.target.value);
+    setGridSize(targetValue);
   };
 
   return (
@@ -30,7 +33,8 @@ export const GridSizeInput: React.FC<GridSizeInputProps> = (
         label="Grid Size"
         type="number"
         onChange={handleChange}
-      ></TextField>
+        defaultValue={15}
+      />
     </div>
   );
 };

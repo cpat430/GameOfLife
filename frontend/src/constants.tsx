@@ -2,6 +2,7 @@ export const DEFAULT_GRID_SIZE = 20;
 export const MIN_GRID_SIZE = 5;
 export const MAX_GRID_SIZE = 30;
 
+// @TODO: update this to have only one endpoint and multithread if it's too big
 export const GAME_OF_LIFE_URI = 'http://localhost:8080/game-of-life';
 export const GAME_OF_LIFE_MULTITHREAD_URI =
   'http://localhost:8080/game-of-life-multithreaded';

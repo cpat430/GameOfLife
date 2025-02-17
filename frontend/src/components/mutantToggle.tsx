@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
-import { MutantContext } from '../providers/MutantContext';
+
 import { Checkbox, FormControlLabel, Stack } from '@mui/material';
+
+import { MutantContext } from '../providers/MutantContext';
 
 export const MutantToggle: React.FC = () => {
   const { isMutant, setIsMutant } = useContext(MutantContext);

@@ -1,5 +1,7 @@
-import { Stack } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
+
+import { Stack } from '@mui/material';
+
 import { ALIVE, DEAD, MUTANT, NUM_TYPES } from '../constants';
 import { GridContext } from '../providers/GridContext';
 
