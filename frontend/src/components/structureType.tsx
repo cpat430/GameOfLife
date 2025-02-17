@@ -30,7 +30,7 @@ export const StructureType: React.FC = () => {
 
   return (
     <div style={{ padding: '5px' }}>
-      <form onChange={handleChange} style={{}}>
+      <form onChange={handleChange}>
         <div
           style={{
             display: 'flex',
