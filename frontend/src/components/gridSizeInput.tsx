@@ -33,6 +33,7 @@ export const GridSizeInput: React.FC<GridSizeInputProps> = (
         label="Grid Size"
         type="number"
         onChange={handleChange}
+        defaultValue={15}
       />
     </div>
   );
