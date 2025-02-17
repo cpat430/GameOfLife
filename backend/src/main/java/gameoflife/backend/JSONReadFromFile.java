@@ -24,9 +24,7 @@ public class JSONReadFromFile {
 
         InputStream is = null;
         try {
-            File file = new File(
-                    getClass().getClassLoader().getResource(STRUCTURE_URL).getFile());
-            is = new FileInputStream(file);
+            is = getClass().getClassLoader().getResourceAsStream(STRUCTURE_URL);
 
             JSONTokener tokener = new JSONTokener(is);
             JSONObject jsonObject = new JSONObject(tokener);
