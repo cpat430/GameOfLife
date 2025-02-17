@@ -1,0 +1,10 @@
+version: "3"
+services:
+  frontend:
+    image: conways-game-of-life-frontend:latest
+    ports:
+      - 3000:3000
+  backend:
+    image: conways-game-of-life-backend:latest
+    ports:
+      - 8080:8080
