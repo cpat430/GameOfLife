@@ -1,23 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { Button } from '@mui/material';
 
-import { GridContext } from '../providers/GridContext';
-import { MutantContext } from '../providers/MutantContext';
-import { getNextState } from '../queries/getNextState';
+import { useNextState } from '../hooks/useNextState';
 
-export const CalculateStateButton: React.FC = () => {
-  const { grid, setGrid } = useContext(GridContext);
-  const { isMutant } = useContext(MutantContext);
-
-  const onClick = async () => {
-    const data = await getNextState(grid, isMutant);
-    setGrid(data);
-  };
+export const CalculateStateButton = () => {
+  const { fetchNextState, isLoading } = useNextState();
 
   return (
     <div>
-      <Button variant="outlined" onClick={onClick}>
+      <Button variant="outlined" onClick={fetchNextState} disabled={isLoading}>
         Calculate Next State
       </Button>
     </div>

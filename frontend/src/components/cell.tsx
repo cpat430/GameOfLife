@@ -4,6 +4,7 @@ import { Stack } from '@mui/material';
 
 import { ALIVE, DEAD, MUTANT, NUM_TYPES } from '../constants';
 import { GridContext } from '../providers/GridContext';
+import { MutantContext } from '../providers/MutantContext';
 
 // icons from https://icons8.com/icons/set/bacteria
 
@@ -21,9 +22,10 @@ export const Cell: React.FC<CellProps> = (props: CellProps) => {
   const [cellValue, setCellValue] = useState<number>(initialValue);
 
   const { updateGrid } = useContext(GridContext);
+  const { isMutant } = useContext(MutantContext);
 
   const handleClick = () => {
-    const value = (cellValue + 1) % NUM_TYPES;
+    const value = (cellValue + 1) % NUM_TYPES(isMutant);
     updateGrid({ i, j, value });
   };
 

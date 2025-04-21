@@ -12,7 +12,7 @@ export const DEAD = 0;
 export const ALIVE = 1;
 export const MUTANT = 2;
 
-export const NUM_TYPES = 3;
+export const NUM_TYPES = (isMutant?: boolean) => (isMutant ? 3 : 2);
 
 export const TYPES = [
   'none',
