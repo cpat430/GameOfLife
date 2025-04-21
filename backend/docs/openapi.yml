@@ -1,0 +1,115 @@
+openapi: 3.0.3
+info:
+  title: Game of Life API
+  description: API for Conway's Game of Life with additional features
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+
+paths:
+  /game-of-life:
+    post:
+      summary: Calculate next board state
+      description: Calculates the next state of the Game of Life board
+      operationId: nextBoard
+      parameters:
+        - name: isMutant
+          in: query
+          description: Flag to determine if mutant rules should be applied
+          required: false
+          schema:
+            type: boolean
+            default: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BoardRequest'
+      responses:
+        '200':
+          description: Next board state calculated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardResponse'
+
+  /game-of-life-multithreaded:
+    post:
+      summary: Calculate next board state using multiple threads
+      description: Calculates the next state of the Game of Life board using multithreading for boards larger than 5x5
+      operationId: nextBoardMultithreaded
+      parameters:
+        - name: isMutant
+          in: query
+          description: Flag to determine if mutant rules should be applied
+          required: false
+          schema:
+            type: boolean
+            default: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BoardRequest'
+      responses:
+        '200':
+          description: Next board state calculated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardResponse'
+
+  /structures:
+    get:
+      summary: Get predefined board structures
+      description: Retrieves predefined Game of Life board structures
+      operationId: getStructures
+      parameters:
+        - name: structureName
+          in: query
+          description: Name of the structure to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Structure retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: array
+                  items:
+                    type: integer
+                description: 2D array representing the requested structure
+
+components:
+  schemas:
+    BoardRequest:
+      type: object
+      properties:
+        currentBoard:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+          description: 2D array representing the current state of the board
+      required:
+        - currentBoard
+    BoardResponse:
+      type: object
+      properties:
+        nextBoard:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+          description: 2D array representing the next board state
+      required:
+        - nextBoard

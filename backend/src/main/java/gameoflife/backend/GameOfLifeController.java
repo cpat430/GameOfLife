@@ -19,6 +19,18 @@ class BoardRequest {
     }
 }
 
+class BoardResponse {
+    private int[][] nextBoard;
+
+    public BoardResponse(int[][] nextBoard) {
+        this.nextBoard = nextBoard;
+    }
+
+    public int[][] getNextBoard() {
+        return nextBoard;
+    }
+}
+
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 public class GameOfLifeController {
@@ -32,18 +44,18 @@ public class GameOfLifeController {
     }
 
     @PostMapping("/game-of-life")
-    public @ResponseBody int[][] nextBoard(@RequestBody() BoardRequest boardRequest,
+    public @ResponseBody BoardResponse nextBoard(@RequestBody() BoardRequest boardRequest,
             @PathParam("isMutant") boolean isMutant) {
         int[][] currentBoard = boardRequest.getCurrentBoard();
 
         GameOfLife gameOfLife = new GameOfLife();
         int[][] nextBoardState = gameOfLife.calculateNextState(currentBoard, isMutant);
 
-        return nextBoardState;
+        return new BoardResponse(nextBoardState);
     }
 
     @PostMapping("/game-of-life-multithreaded")
-    public @ResponseBody int[][] nextBoardMultithreaded(@RequestBody BoardRequest request,
+    public @ResponseBody BoardResponse nextBoardMultithreaded(@RequestBody BoardRequest request,
             @PathParam("isMutant") boolean isMutant)
             throws InterruptedException {
 
@@ -58,7 +70,7 @@ public class GameOfLifeController {
             nextBoardState = gameOfLife.calculateNextState(currentBoard, isMutant);
         }
 
-        return nextBoardState;
+        return new BoardResponse(nextBoardState);
     }
 
     @GetMapping("/structures")
