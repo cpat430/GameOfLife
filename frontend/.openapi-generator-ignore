@@ -1,0 +1,9 @@
+.gitignore
+.npmignore
+README.md
+package.json
+tsconfig.json
+tsconfig.esm.json
+git_push.sh
+.openapi-generator-ignore
+.openapi-generator/** 
